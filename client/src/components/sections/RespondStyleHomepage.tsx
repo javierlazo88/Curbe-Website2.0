@@ -587,9 +587,12 @@ function TypingSalesText() {
   }, [displayedText, isDeleting, isPaused, currentWordIndex, words]);
 
   return (
-    <span className="text-gradient-flow inline-flex items-center pb-3" style={{ minWidth: '11.5rem' }}>
-      {displayedText}
-      <span className="animate-pulse ml-0.5 border-r-2 border-current h-[0.9em] inline-block" />
+    <span className="relative inline-flex items-center pb-3">
+      <span className="invisible">{longestWord}</span>
+      <span className="text-gradient-flow absolute left-0 inline-flex items-center pb-3 h-full">
+        {displayedText}
+        <span className="animate-pulse ml-0.5 border-r-2 border-current h-[0.9em] inline-block" />
+      </span>
     </span>
   );
 }
@@ -832,18 +835,7 @@ function HeroAurora({ onOpenDemo, t }: { onOpenDemo: () => void; t: any }) {
                 </span>
               ))}
              </div>
-
-             {/* Partner Logos */}
-             <div className="flex items-center justify-center lg:justify-start gap-6 mt-6 opacity-60">
-               <span className="text-sm font-semibold text-gray-500">Trusted by:</span>
-               <div className="flex items-center gap-5">
-                 <span className="text-lg font-bold text-[#4285F4]">Google</span>
-                 <span className="text-lg font-bold text-[#1877F2]">Meta</span>
-                 <span className="text-lg font-bold text-[#000000]">TikTok</span>
-                 <span className="text-lg font-bold text-[#0A66C2]">LinkedIn</span>
-               </div>
-             </div>
-           </div>
+            </div>
 
            {/* ── RIGHT · 3D Ad Conveyor (scales with viewport) ── */}
           <div className="relative w-full min-w-0 max-w-full">
