@@ -1,0 +1,129 @@
+En la imagen se ve que el gradiente sí cargó pero los blobs no se ven moviéndose ni difuminándose. Lo más probable es que el otro proyecto no tenga Tailwind, o no soporte los valores arbitrarios (blur-[100px], w-[500px], etc).
+
+Te paso una versión 100% CSS puro que funciona en cualquier proyecto sin depender de Tailwind:
+
+Opción A: Componente React autónomo (sin Tailwind)
+Crea AnimatedBackground.jsx:
+
+import './AnimatedBackground.css';
+export default function AnimatedBackground({ children }) {
+  return (
+    <div className="animated-bg">
+      <div className="animated-bg__gradient" />
+      <div className="animated-bg__blob animated-bg__blob--1" />
+      <div className="animated-bg__blob animated-bg__blob--2" />
+      <div className="animated-bg__blob animated-bg__blob--3" />
+      <div className="animated-bg__blob animated-bg__blob--4" />
+      <div className="animated-bg__content">{children}</div>
+    </div>
+  );
+}
+
+Y AnimatedBackground.css:
+
+.animated-bg {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+.animated-bg__gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    #fde68a 0%,
+    #fdba74 15%,
+    #fca5a5 30%,
+    #c4b5fd 50%,
+    #93c5fd 70%,
+    #60a5fa 85%,
+    #3b82f6 100%
+  );
+}
+.animated-bg__blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  pointer-events: none;
+}
+.animated-bg__blob--1 {
+  top: -10%;
+  left: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(251,191,36,0.8) 0%, rgba(251,146,60,0.5) 40%, transparent 70%);
+  animation: blob-float-1 8s ease-in-out infinite;
+}
+.animated-bg__blob--2 {
+  bottom: -10%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(59,130,246,0.8) 0%, rgba(96,165,250,0.6) 35%, transparent 65%);
+  animation: blob-float-2 10s ease-in-out infinite;
+}
+.animated-bg__blob--3 {
+  top: 40%;
+  left: 20%;
+  width: 400px;
+  height: 400px;
+  filter: blur(90px);
+  background: radial-gradient(circle, rgba(244,114,182,0.5) 0%, rgba(232,121,249,0.3) 40%, transparent 70%);
+  animation: blob-float-3 7s ease-in-out infinite;
+}
+.animated-bg__blob--4 {
+  top: 10%;
+  right: 10%;
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(99,102,241,0.6) 0%, rgba(59,130,246,0.4) 35%, transparent 65%);
+  animation: blob-float-4 9s ease-in-out infinite;
+}
+.animated-bg__content {
+  position: relative;
+  z-index: 10;
+}
+@keyframes blob-float-1 {
+  0%   { transform: translate(0, 0) scale(1); }
+  15%  { transform: translate(200px, -120px) scale(1.15); }
+  30%  { transform: translate(-150px, 80px) scale(0.9); }
+  50%  { transform: translate(300px, 100px) scale(1.1); }
+  70%  { transform: translate(-100px, -200px) scale(0.95); }
+  85%  { transform: translate(150px, 50px) scale(1.05); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+@keyframes blob-float-2 {
+  0%   { transform: translate(0, 0) scale(1); }
+  20%  { transform: translate(-250px, 150px) scale(1.1); }
+  40%  { transform: translate(180px, -180px) scale(0.92); }
+  60%  { transform: translate(-100px, -100px) scale(1.12); }
+  80%  { transform: translate(200px, 120px) scale(0.88); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+@keyframes blob-float-3 {
+  0%   { transform: translate(0, 0) scale(1); }
+  25%  { transform: translate(280px, -80px) scale(1.08); }
+  50%  { transform: translate(-200px, 200px) scale(0.93); }
+  75%  { transform: translate(100px, -250px) scale(1.15); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+@keyframes blob-float-4 {
+  0%   { transform: translate(0, 0) scale(1); }
+  12%  { transform: translate(-180px, -150px) scale(1.1); }
+  30%  { transform: translate(250px, 100px) scale(0.9); }
+  48%  { transform: translate(-80px, 250px) scale(1.12); }
+  65%  { transform: translate(200px, -200px) scale(0.95); }
+  82%  { transform: translate(-250px, 50px) scale(1.05); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+Úsalo así:
+
+<AnimatedBackground>
+  <h1>Tu contenido aquí</h1>
+</AnimatedBackground>
+
+Si el otro proyecto SÍ tiene Tailwind
+Asegúrate de que sea Tailwind v3+ con JIT activo (los valores arbitrarios como blur-[100px] solo funcionan así). Si es Tailwind v2 o el JIT está apagado, las clases no se generan y por eso no ves los blobs.
+
+Mándame qué framework y CSS está usando el otro proyecto y te lo adapto.

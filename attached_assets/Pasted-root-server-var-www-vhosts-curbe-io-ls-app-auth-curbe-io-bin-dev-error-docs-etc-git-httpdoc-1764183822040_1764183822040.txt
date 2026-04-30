@@ -1,0 +1,124 @@
+root@server:/var/www/vhosts/curbe.io# ls
+app  auth.curbe.io  bin  dev  error_docs  etc  git  httpdocs  lib  lib64  logs  releases  scan.curbe.io  tmp  usr  var
+root@server:/var/www/vhosts/curbe.io# cd httpdocs
+ls
+ 1125371015449756
+ 117940057.js
+ 66e86d6eddb6fda26fef89f5_66ba5a08efe71070f98dd10a_67e2d0d0e5c5db8352d5850f_7492nd30re-1.1.1.js
+ 66f8be05719a847fa844877b_ora-logo.svg
+ 66f8ce0fed3e6001ee763c74_arrowbutton.svg
+ 66f8d24fed3e6001ee798225_stars-ranked.svg
+ 66f8df5ac05ff030af5613fb_arrowbutton-1.svg
+ 66f8f28cd4e905aa7539db5b_chat.svg
+ 66f8f6e831bbec4cdf3ac260_cold-caller.avif
+ 66f8f6e8e29ddb03b9e2a6d9_ai-closer.avif
+ 66f8f6e9b64fda3d77a4ba47_ai-setter.avif
+ 66f90838b88e35163c96fbd6_icon-logo.svg
+ 66fc49b231fc97b939c1c21c_asesor-4.jpg
+ 66fc49b24a9ce85e9b1aa98b_asesor-2.jpg
+ 66fc49b295812827945640f6_asesor-3.jpg
+ 66fc49b2b5d69fb0deb49c6f_asesor-1.jpg
+'66fdc7e9941df7d69b36eba5_Group 331.png'
+'66fdc93625166b49b360c408_Group 332.png'
+'67002eedd84f52789ed3b478_ai agent 3.avif'
+'67004cb572c1a12656352097_call buttons ora ia.svg'
+'67004f4818481efb6e4f3169_logo salesforce.svg'
+'67004f482b322811997bbb4b_logo airtable.svg'
+ 67004f482ed855353930adec_logo-zapier.svg
+ 67004f48eed47b38b599439f_logo-hubspot.svg
+'67004f49ca408becd388077d_google meet.svg'
+'67005062bbe91fdebef25b3f_detalle llamada ora.svg'
+'67016ef42c41968af5484d60_bg hero main.avif'
+ 670172e89c73759eef05cd09_grid-hero3.avif
+ 67020e08c252f8cb38a342dc_logo-arquuna.png
+ 67020e2c529dd0c6a963a8f9_logo-jpm.png
+ 67020e502e96a0cc80b94c05_logo-carena.png
+'67020e72d97b88650b90de22_logo-the crazy blaze.png'
+ 67020e9a15ea5801d51a8be6_logo-aprueba.png
+ 67020eb5c832b5a7d9fb193b_logo-shtio.png
+'67020ecb0675b078b8e4fe4c_logo-rancho tecate.png'
+'67020ef453f15469b7b08a64_logo-food carts hub.png'
+ 67020f1a0ecec56203829368_logo-grupovalcas.png
+ 67020f59a96327a0b7e82437_logo-powur.png
+ 67020f81a5e5ee34ded49f3b_logo-engel-volkers.png
+ 67020f9b0ecec5620382f120_logo-oral-care.png
+'6703542145bc5499cb7a2a09_estrategia graphic.svg'
+'6703583245bc5499cb7d9bf2_bg business.avif'
+'6703592c1eb54c89ac3f21c9_bg business2.avif'
+'6704030a2111738f89ba0add_logo-footer 2x.avif'
+'67040f332ae16470bce3b472_lights ondas naturalidad.png'
+'670410258d9be6dd4d9b8ce5_lights persons naturalidad.png'
+'670477216722fa125b162525_Book calendly demo4.avif'
+'670706ffb85473353524ce0e_aprendizaje-graphic 2b.avif'
+'67080c8032c4b5ab87cadadb_business ico 1.svg'
+'6713e745ff3e715b96390aec_escuchalo 2.svg'
+'6713ea29553d6eed0115aff9_escuchalo mb 2.svg'
+'67143a677654fb32538b1bbf_bg grid busin.png'
+'68b8eaf1f9193241eb1c0199_Copia de AGL IA (1).png'
+'68b8eb4eadedc4c314fa6852_Copia de AGL IA (2).png'
+'68b8eb7c3989ac68d5d30a52_Copia de AGL IA (3).png'
+ app.b152jwSz.css
+ attached_assets
+ authorizeNet.iFOEQlqt.css
+ BUvp9bXC.js
+ CalendarComponent.BcIoNnKX.css
+ CalendarComponentv3.CdYDJ7_F.css
+ CalendarCoupon.BQLv8TtO.css
+ CalendarLoader.DCl8rx9c.css
+ CalendarPaymentPage.DdryHq-e.css
+ CalendarRecurringAppointments.CBHkRTjW.css
+ _calendarServices.IoBNVyg5.css
+ client
+ components.json
+ css2
+ DatePick.CTXhwUy6.css
+ design_guidelines.md
+ dist
+ drizzle.config.ts
+ es.js
+ fbevents.js
+ FormComponent.D9kbqryO.css
+ form_embed.js
+ f.txt
+ ghl-calendar-element.C9TS-zb3.css
+ ghl-payment-element.CtMdMWLI.css
+ iframeResizer.contentWindow.min.js
+ intlTelInput.min.css
+ intlTelInput.min.js
+ jquery-3.5.1.min.dc5e7f18c8.js
+ js
+'js(1)'
+'js(2)'
+ libphonenumber-js.min.js
+ _main.98_EMPb9.css
+ node_modules
+ OptionElement.CkzrrImk.css
+ ora-ia.webflow.shared.ac0cfa009.css
+ package.json
+ package-lock.json
+ pixel.js
+ postcss.config.js
+ qTlAqLJqXG9zwARmtvnb.html
+ RazorPayErrorPopup.-_LKMvYq.css
+ replit.md
+ saved_resource.html
+ server
+ shared
+'SM 2 PNG FILE FILE.png'
+ splide-core.min.css
+ splide-extension-auto-scroll.min.js
+ splide-extension-intersection.min.js
+ splide.min.js
+ storage.html
+ tailwind.config.ts
+ TextAreaElement.DhlTBZzY.css
+ TextBoxListElement.BbmoZcvv.css
+ TextElement.CqrgXvy-.css
+ tsconfig.json
+ utils.min.js
+ vite.config.ts
+ vue-multiselect.B5exX717.css
+ webflow.fac61054.ec7ce1906a90907a.js
+ webflow.schunk.57d5559d2f0cd9f8.js
+ webflow.schunk.a592c3d1ef41b2c7.js
+root@server:/var/www/vhosts/curbe.io/httpdocs# 

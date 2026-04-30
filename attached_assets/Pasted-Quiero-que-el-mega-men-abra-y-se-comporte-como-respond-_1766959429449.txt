@@ -1,0 +1,144 @@
+Quiero que el mega menú abra y se comporte como respond.io:
+
+Comportamiento exacto
+
+Abre al hover en desktop (al entrar el mouse al trigger “Product”).
+
+Permanece abierto cuando el mouse pasa del trigger al panel (no debe cerrarse en ese gap).
+
+Cierra con delay corto (120–180ms) solo si el mouse sale de trigger + panel.
+
+También abre/cierra con click (accesibilidad) y ESC lo cierra.
+
+El panel debe estar posicionado absoluto, no empuja layout.
+
+Animación: fade + slide down sutil (150–220ms).
+
+Implementación (Radix/shadcn NavigationMenu, controlado)
+
+Usar value controlado y timers.
+
+"use client";
+import * as React from "react";
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  NavigationMenuContent,
+} from "@/components/ui/navigation-menu";
+
+export function HeaderNav() {
+  const [value, setValue] = React.useState<string>("");
+  const closeT = React.useRef<number | null>(null);
+
+  const open = (v: string) => {
+    if (closeT.current) window.clearTimeout(closeT.current);
+    setValue(v);
+  };
+
+  const scheduleClose = () => {
+    if (closeT.current) window.clearTimeout(closeT.current);
+    closeT.current = window.setTimeout(() => setValue(""), 150);
+  };
+
+  const keepOpen = () => {
+    if (closeT.current) window.clearTimeout(closeT.current);
+  };
+
+  return (
+    <NavigationMenu
+      value={value}
+      onValueChange={setValue}
+      delayDuration={0}
+      skipDelayDuration={0}
+    >
+      <NavigationMenuList className="gap-1">
+        <NavigationMenuItem value="product">
+          {/* TRIGGER: hover abre */}
+          <div onMouseEnter={() => open("product")} onMouseLeave={scheduleClose}>
+            <NavigationMenuTrigger
+              onClick={() => setValue(value === "product" ? "" : "product")}
+              className="nav-trigger"
+            >
+              Product
+            </NavigationMenuTrigger>
+          </div>
+
+          {/* CONTENT: mantener abierto al hover */}
+          <NavigationMenuContent
+            onMouseEnter={keepOpen}
+            onMouseLeave={scheduleClose}
+            className="mega-content"
+          >
+            <div className="mega-panel">
+              {/* tu grid 4 columnas */}
+              ...
+            </div>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+
+        {/* Repetir para Resources */}
+        <NavigationMenuItem value="resources">
+          <div onMouseEnter={() => open("resources")} onMouseLeave={scheduleClose}>
+            <NavigationMenuTrigger
+              onClick={() => setValue(value === "resources" ? "" : "resources")}
+              className="nav-trigger"
+            >
+              Resources
+            </NavigationMenuTrigger>
+          </div>
+
+          <NavigationMenuContent
+            onMouseEnter={keepOpen}
+            onMouseLeave={scheduleClose}
+            className="mega-content"
+          >
+            <div className="mega-panel">...</div>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+      </NavigationMenuList>
+    </NavigationMenu>
+  );
+}
+
+CSS/Clases (posición + animación como respond.io)
+/* Trigger: pill + estado abierto */
+.nav-trigger[data-state="open"]{
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+}
+
+/* Importante: el dropdown no empuja layout */
+.mega-content{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: calc(100% + 10px);
+  width: 1040px;
+  z-index: 60;
+  animation: megaIn 180ms ease-out;
+}
+
+@keyframes megaIn{
+  from { opacity: 0; transform: translateX(-50%) translateY(-6px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* Panel: dark glass */
+.mega-panel{
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background:
+    radial-gradient(900px 500px at 20% 10%, rgba(59,130,246,0.10), transparent 55%),
+    radial-gradient(900px 500px at 80% 20%, rgba(139,92,246,0.08), transparent 60%),
+    rgba(10,14,24,0.92);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.65);
+  overflow: hidden;
+}
+
+Detalle crítico (lo que hace que se sienta como respond.io)
+
+El “truco” es el delay de cierre. Sin eso, cuando mueves el mouse del trigger al panel hay un micro-gap y se cierra. Con scheduleClose() a 150ms y keepOpen() al entrar al panel, se siente igual.

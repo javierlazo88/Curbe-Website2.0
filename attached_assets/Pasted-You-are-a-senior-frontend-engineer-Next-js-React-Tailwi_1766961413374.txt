@@ -1,0 +1,75 @@
+You are a senior frontend engineer (Next.js + React + Tailwind). Rebuild my header + mega menu FROM SCRATCH. Do NOT use Radix NavigationMenu and do NOT use shadcn dropdown components for the mega menu. I want full control (no viewport/poppers weirdness). The behavior must match respond.io.
+
+GOAL
+- Sticky glass header with links:
+  Logo, Product (mega menu), Industries, Resources (mega menu), Pricing, Why Us
+  Right side: language icon, Login, Talk to Sales (secondary), Start Free Trial (primary)
+- Mega menu behavior EXACTLY like respond.io:
+  - Opens on hover on desktop, and also supports click for accessibility
+  - Close delay (150–180ms) so you can move the mouse from trigger to panel without it closing
+  - Closes on ESC and on outside click
+  - Floating panel (position absolute) that does NOT push layout
+  - Panel is centered under the header (NOT full width), fixed width 1040px
+  - Dark glass panel (almost opaque) with blur + deep shadow, near-invisible outline
+  - When open, render a background scrim overlay behind the panel: bg-black/35
+
+DESIGN SPECS (pixel)
+- Header height: 64px
+- Panel: width 1040px, border-radius 18px, padding 24px
+- Panel background must be almost opaque (NOT transparent):
+  background: radial(blue) + radial(violet) + rgba(10,12,18,0.94)
+  blur: 18px
+  shadow: 0 30px 80px rgba(0,0,0,0.65)
+  outline: 1px solid rgba(255,255,255,0.06)
+- Menu items:
+  - Items must NOT be w-full
+  - Use inline-flex + w-fit so hover highlight hugs content (small pill), not full column width
+  - hover/focus: bg-white/10
+
+MEGA MENU CONTENT
+Product mega menu:
+- 4-column grid:
+  Col1 heading "Capture Leads" (4 items)
+  Col2 heading "Convert Leads" (5 items)
+  Col3 heading "Retain Customers" (4 items)
+  Col4 heading "Scale with Curbe.io" (3 items)
+  Under Col4, add a small “Integrations” card with circular icons and a “40+” label
+
+Resources mega menu:
+- 4-column grid:
+  Support (2 items with descriptions)
+  Learn (3 items with descriptions)
+  Tools (3 items with descriptions)
+  Partners (a card with CTA)
+
+IMPLEMENTATION REQUIREMENTS (must follow)
+1) Create `components/MegaHeader.tsx` exporting the complete header.
+2) Use data-driven config: create `components/navData.ts` defining arrays for Product/Resources columns/items (use lucide-react icons).
+3) State: `openMenu: "" | "product" | "resources"`.
+4) Hover timers:
+   - onMouseEnter => open(menu)
+   - onMouseLeave => scheduleClose(160ms)
+   - onMouseEnter panel => cancelClose()
+   - onMouseLeave panel => scheduleClose()
+5) Click support:
+   - Clicking trigger toggles open/close
+   - Outside click closes (document mousedown listener)
+   - ESC closes (keydown listener)
+6) Responsive:
+   - Desktop (>=1024): hover mega menu
+   - Mobile (<1024): hamburger menu with accordion sections (no floating mega panel)
+7) Tailwind only. Small globals.css helpers are allowed.
+
+DELIVERABLES
+- Files:
+  - `components/MegaHeader.tsx`
+  - `components/navData.ts`
+  - (optional) `globals.css` with `.megaWrap`, `.megaPanel`, `.scrim`, `.navPill`
+- Must compile with zero errors.
+- Replace the existing header with this new component.
+
+IMPORTANT (do not ignore)
+- No full-width dropdown.
+- No transparent panel that shows hero text through it. It must be dark and readable (rgba 0.94).
+- Hover highlight must hug content (w-fit).
+- Render the scrim overlay when open.

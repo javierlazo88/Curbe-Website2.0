@@ -1,0 +1,96 @@
+Aquí tienes todo el código del fondo animado para que lo lleves a otro proyecto en Replit. Son dos partes:
+
+1. CSS — agregar al final de src/globals.css (o tu archivo CSS principal)
+@keyframes blob-float-1 {
+  0% { transform: translate(0, 0) scale(1); }
+  15% { transform: translate(200px, -120px) scale(1.15); }
+  30% { transform: translate(-150px, 80px) scale(0.9); }
+  50% { transform: translate(300px, 100px) scale(1.1); }
+  70% { transform: translate(-100px, -200px) scale(0.95); }
+  85% { transform: translate(150px, 50px) scale(1.05); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+@keyframes blob-float-2 {
+  0% { transform: translate(0, 0) scale(1); }
+  20% { transform: translate(-250px, 150px) scale(1.1); }
+  40% { transform: translate(180px, -180px) scale(0.92); }
+  60% { transform: translate(-100px, -100px) scale(1.12); }
+  80% { transform: translate(200px, 120px) scale(0.88); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+@keyframes blob-float-3 {
+  0% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(280px, -80px) scale(1.08); }
+  50% { transform: translate(-200px, 200px) scale(0.93); }
+  75% { transform: translate(100px, -250px) scale(1.15); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+@keyframes blob-float-4 {
+  0% { transform: translate(0, 0) scale(1); }
+  12% { transform: translate(-180px, -150px) scale(1.1); }
+  30% { transform: translate(250px, 100px) scale(0.9); }
+  48% { transform: translate(-80px, 250px) scale(1.12); }
+  65% { transform: translate(200px, -200px) scale(0.95); }
+  82% { transform: translate(-250px, 50px) scale(1.05); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+.animate-blob-1 { animation: blob-float-1 8s ease-in-out infinite; }
+.animate-blob-2 { animation: blob-float-2 10s ease-in-out infinite; }
+.animate-blob-3 { animation: blob-float-3 7s ease-in-out infinite; }
+.animate-blob-4 { animation: blob-float-4 9s ease-in-out infinite; }
+
+2. JSX — el componente del fondo animado
+Pégalo donde quieras el fondo (necesita un contenedor relative overflow-hidden):
+
+<div className="relative overflow-hidden min-h-screen">
+  {/* Gradiente base */}
+  <div
+    className="absolute inset-0"
+    style={{
+      background:
+        'linear-gradient(135deg, #fde68a 0%, #fdba74 15%, #fca5a5 30%, #c4b5fd 50%, #93c5fd 70%, #60a5fa 85%, #3b82f6 100%)',
+    }}
+  />
+  {/* Blobs animados */}
+  <div
+    className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full blur-[100px] animate-blob-1"
+    style={{
+      background:
+        'radial-gradient(circle, rgba(251,191,36,0.8) 0%, rgba(251,146,60,0.5) 40%, transparent 70%)',
+    }}
+  />
+  <div
+    className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full blur-[100px] animate-blob-2"
+    style={{
+      background:
+        'radial-gradient(circle, rgba(59,130,246,0.8) 0%, rgba(96,165,250,0.6) 35%, transparent 65%)',
+    }}
+  />
+  <div
+    className="absolute top-[40%] left-[20%] w-[400px] h-[400px] rounded-full blur-[90px] animate-blob-3"
+    style={{
+      background:
+        'radial-gradient(circle, rgba(244,114,182,0.5) 0%, rgba(232,121,249,0.3) 40%, transparent 70%)',
+    }}
+  />
+  <div
+    className="absolute top-[10%] right-[10%] w-[450px] h-[450px] rounded-full blur-[100px] animate-blob-4"
+    style={{
+      background:
+        'radial-gradient(circle, rgba(99,102,241,0.6) 0%, rgba(59,130,246,0.4) 35%, transparent 65%)',
+    }}
+  />
+  {/* Tu contenido aquí va con z-10 para que quede arriba */}
+  <div className="relative z-10">
+    {/* contenido... */}
+  </div>
+</div>
+
+Requisitos
+Tailwind CSS (para las clases absolute, rounded-full, blur-*, etc.)
+Si tu proyecto no usa Tailwind, puedes reemplazar las clases por estilos inline o CSS normal — los efectos clave son position: absolute, border-radius: 50%, filter: blur(100px), y las animaciones.
+Cómo funciona
+El gradiente base te da los colores de fondo (amarillo → naranja → rosa → púrpura → azul).
+Los 4 "blobs" son círculos enormes con blur(100px) que se mueven en patrones diferentes con translate y scale.
+El blur mezcla los colores creando ese efecto orgánico que se mueve.
+Puedes cambiar los colores del gradiente y de los blobs para personalizarlo a tu gusto.

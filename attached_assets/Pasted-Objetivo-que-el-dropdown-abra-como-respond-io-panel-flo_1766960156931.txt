@@ -1,0 +1,80 @@
+Objetivo: que el dropdown abra como respond.io: panel flotante centrado, glass/transparente, sin bordes duros, y el hover sea un “cuadradito” que abraza el contenido (no una barra gigante).
+
+1) Arreglar el componente base de shadcn: components/ui/navigation-menu.tsx
+
+Busca NavigationMenuViewport y reemplaza su className por este (IMPORTANTE: quitar w-full, left-0, inset-x-0, etc.):
+
+<NavigationMenuPrimitive.Viewport
+  className={cn(
+    "absolute left-1/2 top-full mt-2 -translate-x-1/2 origin-top-center",
+    "h-[var(--radix-navigation-menu-viewport-height)] w-[var(--radix-navigation-menu-viewport-width)]",
+    "rounded-2xl border-0 bg-transparent p-0 shadow-none",
+    "data-[state=open]:animate-in data-[state=open]:fade-in data-[state=open]:zoom-in-95",
+    "data-[state=closed]:animate-out data-[state=closed]:fade-out data-[state=closed]:zoom-out-95"
+  )}
+/>
+
+
+Esto es lo que evita el menú “de lado a lado”.
+El viewport ahora toma el tamaño real del contenido con las CSS vars de Radix.
+
+2) Forzar que tu panel sea el “card” (glass) y no el viewport
+
+En tu Header.tsx (donde tienes NavigationMenuContent), dentro del content, envuelve TODO en un div .mega-panel y ponle estos estilos:
+
+<NavigationMenuContent className="p-0">
+  <div className="mega-panel w-[1040px]">
+    {/* grid 4 columnas aquí */}
+  </div>
+</NavigationMenuContent>
+
+
+Y en globals.css:
+
+.mega-panel{
+  border: 0;
+  border-radius: 18px;
+  background: rgba(12,16,26,0.55);       /* glass */
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.65);
+}
+
+
+(Si quieres un borde casi invisible: outline: 1px solid rgba(255,255,255,0.06).)
+
+3) Fix del “cuadradito” (hover/active) que abrace el contenido
+
+Ahora mismo tus items están pintando ancho de columna porque tienen w-full o porque el contenedor fuerza stretch.
+
+Cambia los items a:
+
+Contenedor de items (columna):
+
+<div className="flex flex-col items-start gap-1">
+  ...
+</div>
+
+
+Cada link/item:
+
+<Link
+  href={it.href}
+  className="
+    inline-flex w-fit items-center gap-3
+    rounded-xl px-3 py-2
+    transition hover:bg-white/10 focus:bg-white/10
+  "
+>
+  ...
+</Link>
+
+
+✅ Resultado: hover = “cuadradito” alrededor del contenido, no barra gigante.
+
+4) (Opcional pero recomendado) Trigger tipo pill como respond.io
+.nav-trigger[data-state="open"]{
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 999px;
+}

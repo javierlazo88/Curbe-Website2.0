@@ -1,0 +1,89 @@
+Arregla el mega menú: ahora se estira full-width y los items resaltan a lo ancho de la columna. Quiero comportamiento tipo respond.io:
+
+A) El dropdown NO puede ser w-full
+
+El panel debe ser un “floating card” centrado bajo el trigger.
+
+Debe tener ancho fijo (1040px) o “fit-content” controlado.
+
+No debe empujar layout.
+
+Cambios:
+
+En NavigationMenuContent, NO uses clases tipo w-screen, w-full, inset-x-0, left-0.
+
+Forzar posicionamiento centrado:
+
+<NavigationMenuContent
+  className="
+    absolute left-1/2 top-full mt-2
+    -translate-x-1/2
+    w-[1040px]
+    data-[motion=from-start]:animate-in
+    data-[motion=from-start]:fade-in
+    data-[motion=from-start]:slide-in-from-top-2
+    data-[motion=to-start]:animate-out
+    data-[motion=to-start]:fade-out
+    data-[motion=to-start]:slide-out-to-top-2
+  "
+>
+  <div className="mega-panel">
+    ...
+  </div>
+</NavigationMenuContent>
+
+B) El panel sin bordes y más “glass”
+
+Ahora se ve con borde duro. Quiero sin borde visible y más transparente:
+
+.mega-panel{
+  border: 0 !important;
+  border-radius: 18px;
+  background: rgba(12,16,26,0.55); /* transparente */
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.65);
+}
+
+
+(Si quieren un borde casi invisible, usar outline: 1px solid rgba(255,255,255,0.06) en vez de border.)
+
+C) El “cuadradito” del hover/active debe abrazar el contenido (NO full width)
+
+Los items NO deben ser w-full. Usar inline-flex w-fit.
+
+Antes (mal): flex w-full ... hover:bg...
+Después (bien):
+
+<Link
+  href={it.href}
+  className="
+    inline-flex w-fit items-center gap-3
+    rounded-xl px-3 py-2
+    transition
+    hover:bg-white/10
+    focus:bg-white/10
+  "
+>
+  ...
+</Link>
+
+
+Y en el contenedor de items:
+
+<div className="flex flex-col items-start gap-1">
+  {items...}
+</div>
+
+D) Si estamos usando el “Viewport” de shadcn/Radix, hay que evitar que fuerce full width
+
+Revisar navigation-menu.tsx de shadcn. Si el Viewport tiene w-full o left-0 right-0, cambiar a que el viewport sea del tamaño del contenido:
+
+<NavigationMenuViewport
+  className="
+    absolute left-1/2 top-full mt-2
+    -translate-x-1/2
+    w-[var(--radix-navigation-menu-viewport-width)]
+    h-[var(--radix-navigation-menu-viewport-height)]
+  "
+/>

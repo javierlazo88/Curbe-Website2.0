@@ -1,0 +1,72 @@
+Actúa como un senior frontend (Next.js + React + Tailwind). Quiero que reconstruyas el header y el mega menu desde cero (NO usar Radix NavigationMenu, NO usar shadcn para el dropdown). Debe comportarse como respond.io.
+
+OBJETIVO
+- Header sticky con vidrio (blur + transparencia) y links:
+  Logo, Product (mega menu), Industries, Resources (mega menu), Pricing, Why Us
+  Derecha: icono idioma, Login, Talk to Sales (secondary), Start Free Trial (primary)
+- Mega menu EXACTO tipo respond.io:
+  - Abre al hover en desktop y también al click (accesibilidad)
+  - Cierra con delay (150–180ms) para que puedas mover mouse del trigger al panel sin que se cierre
+  - Cierra con ESC y click afuera
+  - Panel flotante (position absolute) que NO empuja layout
+  - Panel centrado bajo el header (no full width), ancho fijo 1040px
+  - Panel dark-glass (casi opaco) con blur y sombra profunda, borde casi invisible (outline)
+  - Cuando el panel está abierto, añade overlay (scrim) detrás: bg-black/35
+
+REQUISITOS DE DISEÑO (pixel)
+- Header height: 64px
+- Panel: width 1040px, radius 18px, padding 24px
+- Fondo panel:
+  background: radial(azul) + radial(violeta) + rgba(10,12,18,0.94)
+  blur 18px, shadow 0 30px 80px rgba(0,0,0,0.65)
+  outline: 1px solid rgba(255,255,255,0.06)
+- Items del menú:
+  - Cada item NO puede ser w-full
+  - Debe ser inline-flex w-fit para que el hover sea un “cuadradito” alrededor del contenido
+  - hover/focus: bg-white/10
+- Estructura del mega menu Product:
+  - Grid 4 columnas
+    Col1 heading "Capture Leads" (4 items)
+    Col2 heading "Convert Leads" (5 items)
+    Col3 heading "Retain Customers" (4 items)
+    Col4 heading "Scale with Curbe.io" (3 items) + abajo mini card de integraciones con iconitos y "40+"
+- Mega menu Resources:
+  - Grid 4 columnas
+    Support (2 items con descripción)
+    Learn (3 items con descripción)
+    Tools (3 items con descripción)
+    Partners (tarjeta con CTA)
+
+IMPLEMENTACIÓN (obligatorio)
+1) Crea componente `MegaHeader.tsx` que exporte el header completo.
+2) Usa data-driven nav: crea `navData.ts` con arrays para Product y Resources (columns/items) incluyendo iconos (lucide-react).
+3) Implementa estado: `openMenu: "" | "product" | "resources"`.
+4) Implementa timers:
+   - onMouseEnter => open(menu)
+   - onMouseLeave => scheduleClose(160ms)
+   - onMouseEnter panel => cancelClose()
+   - onMouseLeave panel => scheduleClose()
+5) Implementa click:
+   - click en trigger alterna open/close
+   - click fuera cierra (usa document.addEventListener('mousedown', ...))
+   - ESC cierra (keydown)
+6) Responsive:
+   - Desktop: hover mega menu
+   - Mobile (<1024): reemplaza por menú hamburguesa con acordeones (sin mega panel flotante)
+7) NO uses CSS frameworks aparte de Tailwind. Puedes usar un poco de CSS en globals si hace falta.
+
+ENTREGABLE
+- Archivos:
+  - `components/MegaHeader.tsx`
+  - `components/navData.ts`
+  - (opcional) `globals.css` con clases .megaPanel / .megaWrap / .scrim / .navPill
+- Debe compilar sin errores.
+- Debe quedar limpio y fácil de modificar.
+
+IMPORTANTÍSIMO
+- Nada de width full en el dropdown.
+- Nada de panel transparente que deje ver el hero text: debe ser oscuro casi opaco (rgba 0.94).
+- El hover del item debe abrazar contenido (w-fit).
+- Overlay detrás cuando está abierto.
+
+Hazlo ahora y reemplaza el header actual por este nuevo componente.

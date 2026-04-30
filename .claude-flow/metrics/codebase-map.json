@@ -1,0 +1,11 @@
+{
+  "timestamp": "2026-04-30T22:07:38.016Z",
+  "projectRoot": "/Users/javierlazo/Desktop/Proyecto Curbe",
+  "structure": {
+    "hasPackageJson": true,
+    "hasTsConfig": true,
+    "hasClaudeConfig": true,
+    "hasClaudeFlow": true
+  },
+  "scannedAt": 1777586858016
+}

@@ -1,0 +1,400 @@
+Implementa un header tipo respond.io con mega menu y comportamiento idéntico:
+
+Requisitos funcionales (no negociables)
+
+Header sticky arriba con fondo oscuro y leve transparencia + blur (backdrop-filter), z-index alto.
+
+Links principales: Product (dropdown), Industries, Resources (dropdown), Pricing, Why Us.
+
+Lado derecho: icono globo, Login, botón secundario Talk to Sales, botón primario azul Start Free Trial.
+
+Los dropdowns son mega menus:
+
+Abren al hover en desktop (con delay corto 80–120ms) y también al click (por accesibilidad).
+
+Cierran al salir del área, ESC, click afuera.
+
+Navegables por teclado (tab/shift-tab/flechas) y con ARIA correcto.
+
+El panel del mega menu:
+
+Ancho grande (tipo 960–1100px), centrado bajo el header.
+
+Fondo oscuro, border sutil, sombra profunda, esquinas redondeadas grandes (16–20px).
+
+Grid interno: 4 columnas para “Product” y para “Resources”.
+
+En “Product”, última columna incluye “Success Stories / WhatsApp Business Calling API / Channels and Integrations” y debajo una fila de iconos circulares + “40+”.
+
+En “Resources”, última columna es una tarjeta “Partners” con CTA.
+
+Responsive:
+
+Desktop: mega menu.
+
+Mobile: menú hamburguesa con acordeones (sin mega menu flotante).
+
+Recomendación técnica (para hacerlo bien y rápido)
+
+Usar Radix UI NavigationMenu (vía shadcn/ui) para accesibilidad y manejo de focus.
+
+React + Tailwind. Nada de CSS caótico inline.
+
+Menú data-driven: un objeto JSON define columnas/items para Product y Resources.
+
+Estilos clave:
+
+Header: backdrop-blur, bg-black/60, borde inferior sutil.
+
+Panel: bg-[#0b0f19]/95, border-white/10, shadow fuerte, rounded-2xl.
+
+Items: icono en contenedor cuadrado bg-white/5, hover bg-white/10, texto secundario gris.
+
+Definition of Done (cómo verifico)
+
+Se ve igual que respond.io en desktop en 1440px.
+
+Hover abre/cierra como en respond.io.
+
+Tab + Enter + ESC funciona perfecto.
+
+No hay “jank”: transición suave (150–220ms), sin saltos.
+
+Esqueleto de implementación (Next.js/React + Tailwind + shadcn)
+1) Instalar shadcn NavigationMenu
+npx shadcn@latest add navigation-menu
+npx shadcn@latest add button
+
+2) nav-data.ts (estructura del mega menu)
+import { LucideIcon, Megaphone, Users, Globe, PhoneCall, BookOpen, Wrench, Handshake, Sparkles } from "lucide-react";
+
+export type MegaItem = {
+  title: string;
+  description?: string;
+  href: string;
+  icon?: LucideIcon;
+};
+
+export type MegaColumn = {
+  heading: string;
+  items: MegaItem[];
+};
+
+export const PRODUCT_COLUMNS: MegaColumn[] = [
+  {
+    heading: "Capture Leads",
+    items: [
+      { title: "Capture from Ads", href: "/product/ads", icon: Megaphone },
+      { title: "Capture from Social", href: "/product/social", icon: Users },
+      { title: "Capture from Website", href: "/product/website", icon: Globe },
+      { title: "Capture from Offline", href: "/product/offline", icon: PhoneCall },
+    ],
+  },
+  {
+    heading: "Convert Leads",
+    items: [
+      { title: "AI Agents ✨", href: "/product/ai-agents", icon: Sparkles },
+      { title: "Team Inbox", href: "/product/team-inbox", icon: Users },
+      { title: "Qualify Leads", href: "/product/qualify", icon: BookOpen },
+      { title: "Route Leads", href: "/product/route", icon: Wrench },
+      { title: "Book Appointments", href: "/product/appointments", icon: PhoneCall },
+    ],
+  },
+  {
+    heading: "Retain Customers",
+    items: [
+      { title: "Conversational Support", href: "/product/support", icon: Users },
+      { title: "Promotions and Newsletters", href: "/product/promotions", icon: Megaphone },
+      { title: "Renewal Reminders", href: "/product/renewals", icon: BookOpen },
+      { title: "CSAT or NPS Surveys", href: "/product/surveys", icon: Wrench },
+    ],
+  },
+  {
+    heading: "Scale with Respond.io",
+    items: [
+      { title: "Success Stories", href: "/customers", icon: Users },
+      { title: "WhatsApp Business Calling API", href: "/whatsapp-calling", icon: PhoneCall },
+      { title: "Channels and Integrations", href: "/integrations", icon: Globe },
+    ],
+  },
+];
+
+export const RESOURCES_COLUMNS: MegaColumn[] = [
+  {
+    heading: "Support",
+    items: [
+      { title: "Contact Us", description: "With 24/5 live support and 24/7 AI support.", href: "/contact", icon: Users },
+      { title: "Help Center", description: "Step-by-step guides to configure and use the platform.", href: "/help", icon: BookOpen },
+    ],
+  },
+  {
+    heading: "Learn",
+    items: [
+      { title: "Video Guides", description: "Master business messaging with experts.", href: "/videos", icon: BookOpen },
+      { title: "Blog", description: "Practical tips to grow your business on messaging.", href: "/blog", icon: Megaphone },
+      { title: "Developer Hub", description: "Docs and guides for developers.", href: "/developers", icon: Wrench },
+    ],
+  },
+  {
+    heading: "Tools",
+    items: [
+      { title: "WhatsApp Pricing Calculator", description: "Calculate Messaging and Calling costs.", href: "/tools/pricing", icon: Wrench },
+      { title: "WhatsApp Link Generator", description: "Create a WhatsApp link instantly.", href: "/tools/link", icon: Wrench },
+      { title: "WhatsApp QR Generator", description: "Create a WhatsApp QR code.", href: "/tools/qr", icon: Wrench },
+    ],
+  },
+  {
+    heading: "Partners",
+    items: [
+      { title: "Explore Our Partner Program", description: "Join a network of partners with commissions.", href: "/partners", icon: Handshake },
+    ],
+  },
+];
+
+3) Header.tsx (Radix NavigationMenu + mega panel)
+"use client";
+
+import * as React from "react";
+import Link from "next/link";
+import { Globe } from "lucide-react";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
+import { Button } from "@/components/ui/button";
+import { PRODUCT_COLUMNS, RESOURCES_COLUMNS, MegaColumn } from "./nav-data";
+
+function MegaPanel({
+  columns,
+  rightCard,
+}: {
+  columns: MegaColumn[];
+  rightCard?: React.ReactNode;
+}) {
+  return (
+    <div className="w-[1040px] p-6">
+      <div className="grid grid-cols-4 gap-10">
+        {columns.slice(0, 3).map((col) => (
+          <div key={col.heading} className="space-y-4">
+            <div className="text-xs font-semibold tracking-wide text-white/60">
+              {col.heading}
+            </div>
+            <div className="space-y-2">
+              {col.items.map((it) => (
+                <Link
+                  key={it.title}
+                  href={it.href}
+                  className="group flex items-center gap-3 rounded-xl px-2 py-2 transition hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-white/20"
+                >
+                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 ring-1 ring-white/10 transition group-hover:bg-white/10">
+                    {it.icon ? <it.icon className="h-4 w-4 text-white/70" /> : null}
+                  </div>
+                  <div className="leading-tight">
+                    <div className="text-sm font-medium text-white/90">
+                      {it.title}
+                    </div>
+                    {it.description ? (
+                      <div className="mt-0.5 text-xs text-white/50">
+                        {it.description}
+                      </div>
+                    ) : null}
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        ))}
+
+        <div className="space-y-4">
+          <div className="text-xs font-semibold tracking-wide text-white/60">
+            {columns[3]?.heading}
+          </div>
+
+          <div className="space-y-2">
+            {columns[3]?.items?.map((it) => (
+              <Link
+                key={it.title}
+                href={it.href}
+                className="group flex items-center gap-3 rounded-xl px-2 py-2 transition hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-white/20"
+              >
+                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 ring-1 ring-white/10 transition group-hover:bg-white/10">
+                  {it.icon ? <it.icon className="h-4 w-4 text-white/70" /> : null}
+                </div>
+                <div className="text-sm font-medium text-white/90">{it.title}</div>
+              </Link>
+            ))}
+          </div>
+
+          {rightCard ? (
+            <div className="mt-4 rounded-2xl border border-white/10 bg-white/5 p-4">
+              {rightCard}
+            </div>
+          ) : null}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function Header() {
+  return (
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-black/50 backdrop-blur-xl">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
+        {/* Left */}
+        <div className="flex items-center gap-6">
+          <Link href="/" className="flex items-center gap-2">
+            <div className="h-5 w-5 rounded bg-white/80" />
+            <span className="text-sm font-semibold text-white/90">respond.io</span>
+          </Link>
+
+          <NavigationMenu>
+            <NavigationMenuList className="gap-1">
+              {/* Product mega menu */}
+              <NavigationMenuItem>
+                <NavigationMenuTrigger className="text-white/80">
+                  Product
+                </NavigationMenuTrigger>
+                <NavigationMenuContent className="mt-2">
+                  <div className="rounded-2xl border border-white/10 bg-[#0b0f19]/95 shadow-[0_30px_80px_rgba(0,0,0,0.65)] backdrop-blur-xl">
+                    <MegaPanel
+                      columns={PRODUCT_COLUMNS}
+                      rightCard={
+                        <div className="space-y-3">
+                          <div className="text-xs text-white/60">Channels and Integrations</div>
+                          <div className="flex flex-wrap gap-2">
+                            {Array.from({ length: 10 }).map((_, i) => (
+                              <div
+                                key={i}
+                                className="h-6 w-6 rounded-full bg-white/10 ring-1 ring-white/10"
+                              />
+                            ))}
+                            <div className="px-2 text-xs text-white/60">40+</div>
+                          </div>
+                        </div>
+                      }
+                    />
+                  </div>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+
+              {/* Regular links */}
+              <NavigationMenuItem>
+                <Link href="/industries" legacyBehavior passHref>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle() + " text-white/70"}>
+                    Industries
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+
+              {/* Resources mega menu */}
+              <NavigationMenuItem>
+                <NavigationMenuTrigger className="text-white/80">
+                  Resources
+                </NavigationMenuTrigger>
+                <NavigationMenuContent className="mt-2">
+                  <div className="rounded-2xl border border-white/10 bg-[#0b0f19]/95 shadow-[0_30px_80px_rgba(0,0,0,0.65)] backdrop-blur-xl">
+                    {/* Para Resources: 3 columnas + tarjeta Partners en la 4ta */}
+                    <div className="w-[1040px] p-6">
+                      <div className="grid grid-cols-4 gap-10">
+                        {RESOURCES_COLUMNS.slice(0, 3).map((col) => (
+                          <div key={col.heading} className="space-y-4">
+                            <div className="text-xs font-semibold tracking-wide text-white/60">
+                              {col.heading}
+                            </div>
+                            <div className="space-y-2">
+                              {col.items.map((it) => (
+                                <Link
+                                  key={it.title}
+                                  href={it.href}
+                                  className="group flex items-start gap-3 rounded-xl px-2 py-2 transition hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-white/20"
+                                >
+                                  <div className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 ring-1 ring-white/10 transition group-hover:bg-white/10">
+                                    {it.icon ? <it.icon className="h-4 w-4 text-white/70" /> : null}
+                                  </div>
+                                  <div className="leading-tight">
+                                    <div className="text-sm font-medium text-white/90">
+                                      {it.title}
+                                    </div>
+                                    {it.description ? (
+                                      <div className="mt-0.5 text-xs text-white/50">
+                                        {it.description}
+                                      </div>
+                                    ) : null}
+                                  </div>
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
+                        ))}
+
+                        {/* Partners card */}
+                        <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+                          <div className="flex items-center gap-2 text-sm font-semibold text-white/90">
+                            <div className="h-8 w-8 rounded-xl bg-white/10" />
+                            Partners
+                          </div>
+                          <p className="mt-2 text-xs text-white/60">
+                            Join a growing network of partners with commissions on referrals.
+                          </p>
+                          <Link
+                            href="/partners"
+                            className="mt-4 inline-flex text-sm font-medium text-white/90 hover:text-white"
+                          >
+                            Explore Our Partner Program →
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <Link href="/pricing" legacyBehavior passHref>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle() + " text-white/70"}>
+                    Pricing
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <Link href="/why-us" legacyBehavior passHref>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle() + " text-white/70"}>
+                    Why Us
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
+        </div>
+
+        {/* Right */}
+        <div className="flex items-center gap-3">
+          <button
+            className="inline-flex h-9 w-9 items-center justify-center rounded-full hover:bg-white/5"
+            aria-label="Language"
+          >
+            <Globe className="h-4 w-4 text-white/70" />
+          </button>
+
+          <Link href="/login" className="text-sm text-white/70 hover:text-white/90">
+            Login
+          </Link>
+
+          <Button variant="secondary" className="h-9 rounded-full bg-white/5 text-white/85 hover:bg-white/10">
+            Talk to Sales
+          </Button>
+
+          <Button className="h-9 rounded-full">
+            Start Free Trial
+          </Button>
+        </div>
+      </div>
+    </header>
+  );
+}

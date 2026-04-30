@@ -1,0 +1,74 @@
+Necesito replicar el fondo tipo respond.io. No es un solo gradient: usar múltiples capas (radial + radial + linear) para lograr ese “glow” azul/violeta abajo y el top oscuro.
+
+Implementación (Tailwind + CSS)
+
+El <body> debe ser negro.
+
+El hero/landing debe tener un contenedor con position: relative y un overlay absoluto con el background multi-layer.
+
+Añadir “vignette” (oscurecer bordes y top) para que el centro destaque.
+
+Código exacto
+
+En globals.css agrega:
+
+/* Fondo tipo respond.io (multi-layer gradients) */
+.respond-bg {
+  background:
+    radial-gradient(900px 450px at 20% 80%, rgba(59,130,246,0.35), transparent 60%),
+    radial-gradient(700px 400px at 70% 75%, rgba(139,92,246,0.30), transparent 60%),
+    linear-gradient(to bottom, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.88) 40%, rgba(0,0,0,0.98) 100%);
+}
+
+.respond-vignette {
+  /* oscurece bordes y parte superior, como “atmósfera” */
+  background:
+    radial-gradient(1200px 600px at 50% 75%, transparent 45%, rgba(0,0,0,0.85) 85%),
+    linear-gradient(to bottom, rgba(0,0,0,0.75), transparent 35%);
+  pointer-events: none;
+}
+
+
+En el layout del hero:
+
+<section className="relative overflow-hidden bg-black">
+  {/* capa de gradients */}
+  <div className="absolute inset-0 respond-bg" />
+
+  {/* vignette para que se vea pro */}
+  <div className="absolute inset-0 respond-vignette" />
+
+  {/* opcional: grano sutil */}
+  <div className="absolute inset-0 opacity-[0.06] mix-blend-overlay"
+       style={{ backgroundImage: "url('/noise.png')" }} />
+
+  {/* contenido */}
+  <div className="relative mx-auto max-w-6xl px-6 py-24">
+    ...
+  </div>
+</section>
+
+Ajuste fino (obligatorio)
+
+Si no queda igual: ajustar SOLO estos parámetros:
+
+tamaño del radial (900x450 etc)
+
+posición at 20% 80% y at 70% 75%
+
+alpha de los colores (0.30–0.45)
+No inventar otra técnica.
+
+
+---
+
+## Brutalmente honesto (para que no pierdas tiempo)
+Si quieres que sea “igual igual”, el agente tiene que **medir con DevTools** en respond.io:
+
+- inspeccionar el hero → ver `background` real (a veces está en pseudo-elementos `:before/:after`)
+- copiar la estructura de capas (radials/linears) y luego cambiar colores a tus tokens
+- ajustar opacidades hasta que coincida
+
+Sin esa disciplina, te quedará “bonito” pero no “idéntico”.
+
+Si me mandas un screenshot de tu hero actual (ya en tu app), te digo exactamente qué números mover para que el glow quede como respond.io (posición/tamaño/opacidades).

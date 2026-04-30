@@ -1,0 +1,92 @@
+Curbe.io
+Tagline (propuestas)
+"El cerebro de IA detrás de tus anuncios en Meta."
+"Crea, lanza y optimiza anuncios de Facebook e Instagram en minutos, no en horas."
+"Tu equipo de marketing impulsado por IA, trabajando 24/7."
+Descripción corta (1 línea)
+Curbe.io es la plataforma todo-en-uno con IA que automatiza la creación, lanzamiento y optimización de campañas publicitarias en Facebook e Instagram.
+
+Descripción larga (párrafo)
+Curbe.io transforma la forma en que agencias, marcas e-commerce y media buyers gestionan sus anuncios en Meta. Combinamos generación creativa con IA (textos, imágenes, videos y audios), un asistente inteligente de lanzamiento de campañas, un optimizador neuronal que ajusta presupuestos en tiempo real, y un sistema automático que repara anuncios rechazados antes de que afecten tu cuenta. Todo en una sola plataforma conectada directamente a la API oficial de Meta.
+
+Propuesta de valor (los 4 pilares)
+1. Combate la fatiga creativa
+Genera variantes ilimitadas de imágenes, videos y copys con IA (GPT-4o, Google Gemini, BytePlus, ElevenLabs) para mantener tus campañas siempre frescas.
+
+2. Cumplimiento automático de políticas
+Nuestro sistema valida cada anuncio antes de publicarlo, y si Meta llega a rechazar uno, la IA lo reescribe y lo reenvía automáticamente. Adiós a las cuentas suspendidas.
+
+3. Lanza campañas en minutos
+El asistente "Smart Launch" reduce un proceso de 2 horas a 5 minutos: estrategia, creatividades, audiencia y publicación en un solo flujo guiado.
+
+4. Optimización con IA en tiempo real
+El "Neural Optimizer" pausa anuncios de bajo rendimiento, redistribuye presupuestos y prioriza ganadores usando un sistema de puntuación compuesta (CPL, CTR, ROAS).
+
+¿Para quién es?
+Audiencia	Beneficio principal
+Agencias de marketing digital	Gestiona múltiples cuentas de clientes con iteración creativa rápida
+Marcas de e-commerce	Testea volumen alto de creatividades y maximiza ROI
+Negocios de generación de leads (seguros, bienes raíces, finanzas)	Formularios Meta Lead Forms integrados con seguimiento CRM
+Media buyers independientes	Un "co-piloto" estratégico que cumple con políticas y optimiza solo
+Funcionalidades principales
+Suite Creativa con IA
+Generación de copys publicitarios con GPT-4o
+Generación de imágenes con Google Gemini
+Generación de videos con BytePlus ModelArk y fal.ai/Kling
+Voces y audios con ElevenLabs
+Editor de video estilo CapCut integrado, con subtítulos automáticos y overlays
+Brand DNA: la IA entrevista a tu marca para capturar tu voz y mantener consistencia
+Smart Launch (Lanzador inteligente)
+Asistente de 5 pasos: estrategia → creatividades → assets → audiencia → publicación
+Soporte para Categorías Especiales de Meta (Vivienda, Empleo, Crédito)
+Constructor de Meta Instant Forms integrado
+Gestor de Campañas
+Vista jerárquica: Campañas → Conjuntos de Anuncios → Anuncios
+Métricas en tiempo real sincronizadas con Meta Graph API
+Controles de estado y presupuesto
+Neural Optimizer
+Reglas automatizadas personalizables (CPL, CTR, ROAS, etc.)
+Puntuación compuesta de salud por anuncio (Excelente / Advertencia / Crítico)
+Leaderboard de variantes ganadoras
+Auto-Fix de anuncios rechazados
+Detecta automáticamente rechazos de Meta
+Analiza los motivos
+Reescribe el copy con IA para cumplir políticas
+Reenvía sin intervención manual
+Gestor de Leads (CRM)
+Pipeline tipo Kanban: Nuevo → Contactado → Calificado → Convertido
+Sincronización con formularios de Meta
+Notas, etiquetas y seguimiento por lead
+Tracking Avanzado
+Conversions API (CAPI) del lado servidor
+Bypass a las limitaciones del navegador (iOS 14+, cookies)
+Analíticas detalladas por edad, género, ubicación y placement
+Audiencias
+Constructor de audiencias guardadas, personalizadas y similares (Lookalike)
+Basado en sitio web, engagement o listas de clientes
+Páginas principales del producto
+Dashboard — visión global y onboarding
+Smart Launch — asistente IA para nuevas campañas
+Campaign Manager — control jerárquico de campañas
+Creative Library — biblioteca centralizada de assets
+Lead Manager — CRM tipo pipeline
+Neural Optimizer — reglas IA y leaderboard
+Performance — analítica avanzada y CAPI
+Brand DNA — entrevista estratégica con IA
+Audiences — constructor de segmentaciones
+Diferenciadores clave (vs. competencia)
+Integración nativa con Meta Graph API (no scraping ni intermediarios)
+IA multi-modal: texto + imagen + video + audio en una sola plataforma
+Auto-reparación de anuncios rechazados (único en el mercado)
+Editor de video profesional integrado (no necesitas CapCut, Premiere, etc.)
+Conversions API integrada sin necesidad de desarrolladores
+Métricas / beneficios cuantificables (sugeridas para hero)
+⚡ Lanza campañas 10x más rápido
+🎨 Genera 50+ variantes creativas en minutos
+🛡️ 95% de anuncios rechazados se recuperan automáticamente
+📈 Mejora el ROAS hasta un 40% con optimización neuronal
+(Ajusta estos números según tus datos reales antes de publicarlos.)
+
+Stack técnico (para sección "tecnología" o credibilidad)
+React 18 · Vite · TailwindCSS · Shadcn UI · Express.js · PostgreSQL · Drizzle ORM · OpenAI GPT-4o · Google Gemini · BytePlus · ElevenLabs · Cloudflare R2 · FFmpeg
+
