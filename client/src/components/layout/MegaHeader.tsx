@@ -95,7 +95,6 @@ export function MegaHeader({ onTalkToSales }: MegaHeaderProps) {
   const [openMenu, setOpenMenu] = useState<MenuType>("");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Logo click: if already on home, scroll to top; otherwise navigate to home.
   const handleLogoClick = useCallback((e: React.MouseEvent) => {
     if (location === "/") {
       e.preventDefault();
@@ -110,6 +109,7 @@ export function MegaHeader({ onTalkToSales }: MegaHeaderProps) {
   const closeTimeoutRef = useRef<number | null>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
+  const mobileOverlayRef = useRef<HTMLDivElement>(null);
 
   const cancelClose = useCallback(() => {
     if (closeTimeoutRef.current) {
@@ -138,11 +138,21 @@ export function MegaHeader({ onTalkToSales }: MegaHeaderProps) {
     setOpenMenu(prev => prev === menu ? "" : menu);
   }, []);
 
+  const handleCloseMobileMenu = useCallback(() => {
+    setMobileMenuOpen(false);
+    setMobileAccordion("");
+  }, []);
+
+  const handleToggleMobileMenu = useCallback(() => {
+    setMobileMenuOpen(prev => !prev);
+  }, []);
+
   useEffect(() => {
     const handleOutsideClick = (e: MouseEvent) => {
       const inHeader = headerRef.current && headerRef.current.contains(e.target as Node);
       const inPanel = panelRef.current && panelRef.current.contains(e.target as Node);
-      if (!inHeader && !inPanel) {
+      const inMobileOverlay = mobileOverlayRef.current && mobileOverlayRef.current.contains(e.target as Node);
+      if (!inHeader && !inPanel && !inMobileOverlay) {
         setOpenMenu("");
       }
     };
@@ -150,7 +160,7 @@ export function MegaHeader({ onTalkToSales }: MegaHeaderProps) {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         setOpenMenu("");
-        setMobileMenuOpen(false);
+        handleCloseMobileMenu();
       }
     };
 
@@ -164,18 +174,7 @@ export function MegaHeader({ onTalkToSales }: MegaHeaderProps) {
         window.clearTimeout(closeTimeoutRef.current);
       }
     };
-  }, []);
-
-  useEffect(() => {
-    if (mobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [mobileMenuOpen]);
+  }, [handleCloseMobileMenu]);
 
   const productLinkMap: Record<string, string> = {
     "nav.productMenu.aiCopy": "/product/ai-copy",
@@ -488,7 +487,7 @@ export function MegaHeader({ onTalkToSales }: MegaHeaderProps) {
               <button
                 type="button"
                 className="lg:hidden flex items-center justify-center w-12 h-12 text-gray-700 active:opacity-60 cursor-pointer"
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                onClick={handleToggleMobileMenu}
                 style={{
                   touchAction: 'manipulation',
                   WebkitTapHighlightColor: 'transparent',
@@ -533,11 +532,13 @@ export function MegaHeader({ onTalkToSales }: MegaHeaderProps) {
         </div>
       </div>
 
-      {mobileMenuOpen && (
-        <div
-          className="lg:hidden fixed inset-0 z-[60] overflow-y-auto bg-white"
-          data-testid="mobile-menu-overlay"
-        >
+      <div
+        ref={mobileOverlayRef}
+        aria-hidden={!mobileMenuOpen}
+        className={`lg:hidden fixed inset-0 z-[60] overflow-y-auto bg-white transition-[opacity,visibility] duration-150 ease-out${mobileMenuOpen ? ' opacity-100 visible' : ' opacity-0 invisible'}`}
+        data-testid="mobile-menu-overlay"
+      >
+        {mobileMenuOpen && (
           <div className="relative min-h-full">
             <div className="sticky top-0 z-10 flex items-center justify-between h-16 px-4 border-b border-black/8 bg-white">
               <Link href="/" data-testid="mobile-link-home" onClick={handleLogoClick}>
@@ -554,7 +555,7 @@ export function MegaHeader({ onTalkToSales }: MegaHeaderProps) {
                   WebkitUserSelect: 'none',
                   userSelect: 'none',
                 }}
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={handleCloseMobileMenu}
                 data-testid="button-mobile-close"
                 aria-label="Close mobile menu"
               >
@@ -584,7 +585,7 @@ export function MegaHeader({ onTalkToSales }: MegaHeaderProps) {
                               href={productLinkMap[item.titleKey] || "/product"}
                               className="flex items-center gap-2 py-2 text-gray-700 hover:text-gray-900 transition-colors"
                               data-testid={`mobile-product-${colIndex}-${itemIndex}`}
-                              onClick={() => setMobileMenuOpen(false)}
+                              onClick={handleCloseMobileMenu}
                             >
                               <item.icon className="w-4 h-4 text-gray-500" />
                               <span className="text-sm">{t(item.titleKey)}</span>
@@ -601,7 +602,7 @@ export function MegaHeader({ onTalkToSales }: MegaHeaderProps) {
                 href="#industries" 
                 className="block py-3 text-gray-800 font-medium border-b border-black/8 hover:text-gray-900 transition-colors"
                 data-testid="mobile-nav-industries"
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={handleCloseMobileMenu}
               >
                 {t('nav.industries')}
               </a>
@@ -627,7 +628,7 @@ export function MegaHeader({ onTalkToSales }: MegaHeaderProps) {
                               href={resourcesLinkMap[item.titleKey] || "/resources"}
                               className="flex items-center gap-2 py-2 text-gray-700 hover:text-gray-900 transition-colors"
                               data-testid={`mobile-resources-${colIndex}-${itemIndex}`}
-                              onClick={() => setMobileMenuOpen(false)}
+                              onClick={handleCloseMobileMenu}
                             >
                               <item.icon className="w-4 h-4 text-gray-500" />
                               <span className="text-sm">{t(item.titleKey)}</span>
@@ -644,7 +645,7 @@ export function MegaHeader({ onTalkToSales }: MegaHeaderProps) {
                 to="/pricing"
                 className="block py-3 text-gray-800 font-medium border-b border-black/8 hover:text-gray-900 transition-colors"
                 data-testid="mobile-nav-pricing"
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={handleCloseMobileMenu}
               >
                 {t('nav.pricing')}
               </Link>
@@ -653,7 +654,7 @@ export function MegaHeader({ onTalkToSales }: MegaHeaderProps) {
                 href="#why-us" 
                 className="block py-3 text-gray-800 font-medium border-b border-black/8 hover:text-gray-900 transition-colors"
                 data-testid="mobile-nav-why-us"
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={handleCloseMobileMenu}
               >
                 {t('nav.whyUs')}
               </a>
@@ -689,8 +690,8 @@ export function MegaHeader({ onTalkToSales }: MegaHeaderProps) {
               </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </>
   );
 }

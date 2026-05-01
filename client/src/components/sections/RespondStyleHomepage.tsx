@@ -587,13 +587,13 @@ function TypingSalesText() {
   }, [displayedText, isDeleting, isPaused, currentWordIndex, words]);
 
   return (
-    <span className="relative inline-flex items-center pb-3">
-      <span className="invisible">{longestWord}</span>
-      <span className="text-gradient-flow absolute left-0 inline-flex items-center pb-3 h-full">
-        {displayedText}
-        <span className="animate-pulse ml-0.5 border-r-2 border-current h-[0.9em] inline-block" />
+       <span className="relative inline-flex items-center pb-3 whitespace-nowrap">
+         <span className="invisible leading-tight">{longestWord}</span>
+         <span className="text-gradient-flow absolute inset-0 flex items-end pb-3 leading-tight">
+          {displayedText}
+          <span className="animate-pulse ml-0.5 border-r-2 border-current h-[0.9em] inline-block" />
+        </span>
       </span>
-    </span>
   );
 }
 
@@ -764,14 +764,14 @@ export function RespondStyleHomepage() {
 function HeroAurora({ onOpenDemo, t }: { onOpenDemo: () => void; t: any }) {
   return (
     <section
-      className="relative px-5 sm:px-6 flex flex-col py-8 lg:py-0"
+      className="relative px-5 sm:px-6 flex flex-col pt-20 sm:pt-24 lg:pt-8 lg:py-0 overflow-visible"
       style={{ minHeight: 'calc(100vh - 72px)' }}
       data-testid="hero-section"
     >
-      <div className="max-w-7xl mx-auto w-full flex-1 flex items-center pt-2 lg:pt-4 pb-2">
-        <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_1fr] gap-8 lg:gap-8 items-center w-full">
+      <div className="max-w-7xl mx-auto w-full flex-1 flex items-center pt-4 lg:pt-4 pb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_1fr] gap-6 lg:gap-8 items-center w-full">
           {/* ── LEFT · Editorial copy + CTAs ── */}
-          <div className="text-center lg:text-left">
+          <div className="text-center lg:text-left space-y-4 sm:space-y-5">
             {/* Light glass pill — single-line at every viewport, smaller on mobile */}
             <a
               href="#"
@@ -790,7 +790,7 @@ function HeroAurora({ onOpenDemo, t }: { onOpenDemo: () => void; t: any }) {
 
              {/* Headline — sized to fit each line on a single row at every breakpoint */}
              <h1
-               className="text-[2.25rem] sm:text-[3rem] md:text-6xl lg:text-[4rem] xl:text-[5rem] font-bold leading-[1.05] tracking-tight mb-5 whitespace-nowrap"
+                className="text-xl sm:text-2xl md:text-4xl lg:text-6xl xl:text-[4rem] 2xl:text-[5rem] font-bold leading-tight tracking-tight mb-5 sm:mb-6"
                data-testid="hero-headline"
              >
                <span className="text-gray-900">{t('respondHome.heroLine1')}</span>
@@ -799,7 +799,7 @@ function HeroAurora({ onOpenDemo, t }: { onOpenDemo: () => void; t: any }) {
              </h1>
 
             <p
-              className="text-base lg:text-lg text-gray-700 mb-6 max-w-xl mx-auto lg:mx-0 leading-relaxed"
+               className="text-base lg:text-lg text-gray-700 mb-6 max-w-xl mx-auto lg:mx-0 leading-relaxed px-4 sm:px-0"
               data-testid="hero-description"
             >
               {t('respondHome.heroDesc')}
@@ -838,11 +838,11 @@ function HeroAurora({ onOpenDemo, t }: { onOpenDemo: () => void; t: any }) {
             </div>
 
            {/* ── RIGHT · 3D Ad Conveyor (scales with viewport) ── */}
-          <div className="relative w-full min-w-0 max-w-full">
-            <div className="relative w-full h-[360px] sm:h-[440px] md:h-[500px] lg:h-[580px] xl:h-[620px] overflow-hidden">
-              <AdShowcaseHero />
-            </div>
-          </div>
+           <div className="relative w-full min-w-0 max-w-full mt-6 lg:mt-0">
+             <div className="relative w-full h-[280px] sm:h-[360px] md:h-[440px] lg:h-[500px] xl:h-[580px] overflow-hidden">
+               <AdShowcaseHero />
+             </div>
+           </div>
         </div>
       </div>
 
