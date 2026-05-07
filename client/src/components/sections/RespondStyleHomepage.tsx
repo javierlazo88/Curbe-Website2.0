@@ -766,11 +766,10 @@ export function RespondStyleHomepage() {
 function HeroAurora({ onOpenDemo, t }: { onOpenDemo: () => void; t: any }) {
   return (
     <section
-      className="relative px-5 sm:px-6 flex flex-col pt-20 sm:pt-24 lg:pt-8 lg:py-0 overflow-visible"
-      style={{ minHeight: 'calc(100vh - 72px)' }}
+      className="relative px-5 sm:px-6 flex flex-col pt-20 sm:pt-24 lg:pt-10 pb-10 lg:pb-12 overflow-visible"
       data-testid="hero-section"
     >
-      <div className="max-w-7xl mx-auto w-full flex-1 flex flex-col justify-center pt-4 lg:pt-4 pb-8">
+      <div className="max-w-7xl mx-auto w-full flex flex-col gap-6 lg:gap-8">
         <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_1fr] gap-6 lg:gap-8 items-center w-full">
           {/* ── LEFT · Editorial copy + CTAs ── */}
           <div className="text-center lg:text-left space-y-4 sm:space-y-5">
@@ -883,12 +882,21 @@ function HeroAurora({ onOpenDemo, t }: { onOpenDemo: () => void; t: any }) {
                   <div className="hidden md:block w-px h-10 bg-gradient-to-b from-transparent via-gray-300 to-transparent" />
 
                   <div className="flex flex-wrap items-center justify-center md:justify-around gap-x-8 sm:gap-x-12 gap-y-4 flex-1">
-                    {/* Meta */}
-                    <svg className="h-7 sm:h-9 w-auto" viewBox="0 0 287 191" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Meta">
-                      <path d="M31.06 125.96c0 11.06 2.43 19.55 5.61 24.69 4.16 6.74 10.36 9.59 16.68 9.59 8.14 0 15.59-2.02 29.95-21.89 11.51-15.92 25.07-38.27 34.2-52.27l15.46-23.74c10.74-16.49 23.17-34.83 37.42-47.27 11.63-10.15 24.18-15.79 36.81-15.79 21.21 0 41.42 12.29 56.88 35.34 16.78 25.05 23.79 56.79 23.79 89.51 0 19.46-3.84 33.76-10.36 45.05h-29.4c17.72 0 22.14-16.28 22.14-34.91 0-26.55-6.19-56.01-19.83-77.06-9.68-14.93-22.21-24.07-36-24.07-14.91 0-26.92 11.25-40.42 31.32-7.18 10.66-14.54 23.66-22.81 38.32l-9.12 16.18c-18.32 32.58-22.96 40.05-32.13 52.32-16.06 21.49-29.74 29.6-47.81 29.6-21.49 0-34.65-9.31-42.79-23.34l25.93-15.59z" fill="#0081FB"/>
-                      <path d="M24.5 37.6C38.84 15.5 59.55 0 83.31 0c13.76 0 27.45 4.07 41.74 15.74 15.65 12.74 32.32 33.74 53.13 68.42l7.46 12.43c18.01 30.01 28.26 45.45 34.27 52.74 7.74 9.37 13.16 12.16 20.2 12.16 17.72 0 22.14-16.28 22.14-34.91h26.46c0 19.46-3.84 33.76-10.36 45.05-6.31 10.92-18.61 21.83-39.31 21.83-12.86 0-24.26-2.79-36.86-14.68-9.69-9.13-21.02-25.34-29.74-39.92l-25.95-43.37c-13.02-21.76-24.97-37.97-31.89-45.32-7.43-7.91-16.99-17.46-32.25-17.46-12.35 0-22.83 8.66-31.6 21.92L24.5 37.6z" fill="#0064E1"/>
-                      <path d="M82.81 31.18c-12.35 0-22.83 8.66-31.6 21.92-12.4 18.74-19.99 46.66-19.99 73.46 0 11.06 2.43 19.55 5.61 24.69l-25.7 16.97C2.65 156.73 0 141.43 0 123.99 0 93.03 8.5 60.76 24.5 37.6 38.84 15.5 59.55 0 83.31 0l-.5 31.18z" fill="#0064E1"/>
-                    </svg>
+                    {/* Meta — official wordmark style */}
+                    <span
+                      className="text-[22px] sm:text-[26px] font-bold tracking-tight leading-none"
+                      style={{
+                        background: 'linear-gradient(90deg, #0064E1 0%, #0082FB 50%, #0064E1 100%)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        backgroundClip: 'text',
+                        fontFamily: 'Inter, system-ui, sans-serif',
+                        letterSpacing: '-0.04em',
+                      }}
+                      aria-label="Meta"
+                    >
+                      Meta
+                    </span>
 
                     {/* Google */}
                     <svg className="h-7 sm:h-8 w-auto" viewBox="0 0 272 92" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Google">
