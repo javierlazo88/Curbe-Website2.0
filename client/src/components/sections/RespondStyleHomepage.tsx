@@ -912,7 +912,7 @@ function HeroAurora({ onOpenDemo, t }: { onOpenDemo: () => void; t: any }) {
                     <img
                       src={linkedinPartnerLogo}
                       alt="LinkedIn Marketing Partner"
-                      className="h-12 sm:h-14 w-auto object-contain rounded-md"
+                      className="h-14 sm:h-16 w-auto object-contain rounded-md"
                       loading="lazy"
                     />
                   </div>
