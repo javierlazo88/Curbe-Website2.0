@@ -770,11 +770,12 @@ export function RespondStyleHomepage() {
 function HeroAurora({ onOpenDemo, t }: { onOpenDemo: () => void; t: any }) {
   return (
     <section
-      className="relative px-5 sm:px-6 flex flex-col pt-20 sm:pt-24 lg:pt-10 pb-10 lg:pb-12 overflow-visible"
+      className="relative px-5 sm:px-6 flex flex-col pt-20 sm:pt-24 lg:pt-8 pb-6 lg:pb-8 overflow-visible"
+      style={{ minHeight: 'calc(100svh - 72px)' }}
       data-testid="hero-section"
     >
-      <div className="max-w-7xl mx-auto w-full flex flex-col gap-6 lg:gap-8">
-        <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_1fr] gap-6 lg:gap-8 items-center w-full">
+      <div className="max-w-7xl mx-auto w-full flex-1 flex flex-col gap-4 lg:gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_1fr] gap-6 lg:gap-8 items-center w-full flex-1">
           {/* ── LEFT · Editorial copy + CTAs ── */}
           <div className="text-center lg:text-left space-y-4 sm:space-y-5">
             {/* Light glass pill — single-line at every viewport, smaller on mobile */}
