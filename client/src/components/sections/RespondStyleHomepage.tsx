@@ -1,56 +1,56 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import { useTranslation } from 'react-i18next';
-import microcurrentAdImg from "@assets/ChatGPT_Image_Apr_29,_2026,_11_38_06_AM_1777477100945.png";
-import rizadorAdImg from "@assets/ChatGPT_Image_Apr_29,_2026,_11_37_46_AM_1777477100946.png";
-import parchesAcneAdImg from "@assets/ChatGPT_Image_Apr_29,_2026,_11_37_34_AM_1777477100946.png";
-import parchesOjosAdImg from "@assets/ChatGPT_Image_Apr_29,_2026,_11_37_26_AM_1777477100946.png";
-import lipOilAdImg from "@assets/ChatGPT_Image_Apr_29,_2026,_11_37_18_AM_1777477100946.png";
-import mascaraLedAdImg from "@assets/ChatGPT_Image_Apr_29,_2026,_11_37_11_AM_1777477100947.png";
-import ceraveAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_04_47_PM_1777424703878.png";
-import solDeJaneiroAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_04_43_PM_1777424703878.png";
-import rareBeautyAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_04_39_PM_1777424703879.png";
-import ordinaryAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_04_35_PM_1777424703879.png";
-import mightyPatchAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_04_29_PM_1777424703879.png";
-import ollyAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_00_56_PM_1777424703880.png";
-import utensilsAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_07_14_PM_1777424859652.png";
-import kasaAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_07_06_PM_1777424859652.png";
-import ninjaCreamiAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_07_01_PM_1777424859653.png";
-import pinkStuffAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_06_52_PM_1777424859653.png";
-import stanleyAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_06_43_PM_1777424859653.png";
-import crocsAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_11_13_PM_1777425076070.png";
-import sonnyAngelAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_11_33_PM_1777425095611.png";
-import viralPlushAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_11_40_PM_1777425103083.png";
-import catLitterAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_14_37_PM_1777425280397.png";
-import petRollerAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_14_45_PM_1777425289268.png";
-import electrolytesAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_14_54_PM_1777425295809.png";
-import gummiesAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_15_02_PM_1777425306301.png";
-import sleepGummiesAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_15_11_PM_1777425313604.png";
-import massageGunAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_15_20_PM_1777425323158.png";
-import miniFanAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_16_01_PM_1777425362873.png";
-import yaraAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_30_03_PM_1777426213300.png";
-import limpiezaAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_35_59_PM_1777426582176.png";
-import personalTrainerAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_35_49_PM_1777426582176.png";
-import paisajismoAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_35_44_PM_1777426582177.png";
-import fotoVideoAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_35_39_PM_1777426582177.png";
-import remodelacionAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_35_32_PM_1777426582177.png";
-import adsImg01 from "@assets/ChatGPT_Image_Apr_30_2026_03_39_45_PM.png";
-import adsImg02 from "@assets/ChatGPT_Image_Apr_30_2026_03_41_07_PM.png";
-import adsImg03 from "@assets/ChatGPT_Image_Apr_30_2026_03_41_25_PM.png";
-import adsImg04 from "@assets/ChatGPT_Image_Apr_30_2026_03_42_43_PM.png";
-import adsImg05 from "@assets/ChatGPT_Image_Apr_30_2026_03_43_44_PM.png";
-import adsImg06 from "@assets/ChatGPT_Image_Apr_30_2026_03_43_50_PM.png";
-import adsImg07 from "@assets/ChatGPT_Image_Apr_30_2026_03_44_00_PM.png";
-import adsImg08 from "@assets/ChatGPT_Image_Apr_30_2026_03_44_09_PM.png";
-import adsImg09 from "@assets/ChatGPT_Image_Apr_30_2026_03_46_31_PM.png";
-import adsImg10 from "@assets/ChatGPT_Image_Apr_30_2026_03_52_31_PM.png";
-import adsImg11 from "@assets/ChatGPT_Image_Apr_30_2026_03_52_40_PM.png";
-import adsImg12 from "@assets/ChatGPT_Image_Apr_30_2026_03_52_55_PM.png";
-import adsImg13 from "@assets/ChatGPT_Image_Apr_30_2026_03_53_04_PM.png";
-import adsImg14 from "@assets/ChatGPT_Image_Apr_30_2026_03_55_23_PM.png";
-import adsImg15 from "@assets/ChatGPT_Image_Apr_30_2026_03_55_30_PM.png";
-import adsImg16 from "@assets/ChatGPT_Image_Apr_30_2026_03_55_39_PM.png";
-import adsImg17 from "@assets/ChatGPT_Image_Apr_30_2026_03_55_49_PM.png";
-import adsImg18 from "@assets/ChatGPT_Image_Apr_30_2026_03_56_02_PM.png";
+import microcurrentAdImg from "@assets/ChatGPT_Image_Apr_29,_2026,_11_38_06_AM_1777477100945.webp";
+import rizadorAdImg from "@assets/ChatGPT_Image_Apr_29,_2026,_11_37_46_AM_1777477100946.webp";
+import parchesAcneAdImg from "@assets/ChatGPT_Image_Apr_29,_2026,_11_37_34_AM_1777477100946.webp";
+import parchesOjosAdImg from "@assets/ChatGPT_Image_Apr_29,_2026,_11_37_26_AM_1777477100946.webp";
+import lipOilAdImg from "@assets/ChatGPT_Image_Apr_29,_2026,_11_37_18_AM_1777477100946.webp";
+import mascaraLedAdImg from "@assets/ChatGPT_Image_Apr_29,_2026,_11_37_11_AM_1777477100947.webp";
+import ceraveAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_04_47_PM_1777424703878.webp";
+import solDeJaneiroAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_04_43_PM_1777424703878.webp";
+import rareBeautyAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_04_39_PM_1777424703879.webp";
+import ordinaryAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_04_35_PM_1777424703879.webp";
+import mightyPatchAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_04_29_PM_1777424703879.webp";
+import ollyAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_00_56_PM_1777424703880.webp";
+import utensilsAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_07_14_PM_1777424859652.webp";
+import kasaAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_07_06_PM_1777424859652.webp";
+import ninjaCreamiAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_07_01_PM_1777424859653.webp";
+import pinkStuffAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_06_52_PM_1777424859653.webp";
+import stanleyAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_06_43_PM_1777424859653.webp";
+import crocsAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_11_13_PM_1777425076070.webp";
+import sonnyAngelAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_11_33_PM_1777425095611.webp";
+import viralPlushAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_11_40_PM_1777425103083.webp";
+import catLitterAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_14_37_PM_1777425280397.webp";
+import petRollerAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_14_45_PM_1777425289268.webp";
+import electrolytesAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_14_54_PM_1777425295809.webp";
+import gummiesAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_15_02_PM_1777425306301.webp";
+import sleepGummiesAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_15_11_PM_1777425313604.webp";
+import massageGunAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_15_20_PM_1777425323158.webp";
+import miniFanAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_16_01_PM_1777425362873.webp";
+import yaraAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_30_03_PM_1777426213300.webp";
+import limpiezaAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_35_59_PM_1777426582176.webp";
+import personalTrainerAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_35_49_PM_1777426582176.webp";
+import paisajismoAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_35_44_PM_1777426582177.webp";
+import fotoVideoAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_35_39_PM_1777426582177.webp";
+import remodelacionAdImg from "@assets/ChatGPT_Image_Apr_28,_2026,_09_35_32_PM_1777426582177.webp";
+import adsImg01 from "@assets/ChatGPT_Image_Apr_30_2026_03_39_45_PM.webp";
+import adsImg02 from "@assets/ChatGPT_Image_Apr_30_2026_03_41_07_PM.webp";
+import adsImg03 from "@assets/ChatGPT_Image_Apr_30_2026_03_41_25_PM.webp";
+import adsImg04 from "@assets/ChatGPT_Image_Apr_30_2026_03_42_43_PM.webp";
+import adsImg05 from "@assets/ChatGPT_Image_Apr_30_2026_03_43_44_PM.webp";
+import adsImg06 from "@assets/ChatGPT_Image_Apr_30_2026_03_43_50_PM.webp";
+import adsImg07 from "@assets/ChatGPT_Image_Apr_30_2026_03_44_00_PM.webp";
+import adsImg08 from "@assets/ChatGPT_Image_Apr_30_2026_03_44_09_PM.webp";
+import adsImg09 from "@assets/ChatGPT_Image_Apr_30_2026_03_46_31_PM.webp";
+import adsImg10 from "@assets/ChatGPT_Image_Apr_30_2026_03_52_31_PM.webp";
+import adsImg11 from "@assets/ChatGPT_Image_Apr_30_2026_03_52_40_PM.webp";
+import adsImg12 from "@assets/ChatGPT_Image_Apr_30_2026_03_52_55_PM.webp";
+import adsImg13 from "@assets/ChatGPT_Image_Apr_30_2026_03_53_04_PM.webp";
+import adsImg14 from "@assets/ChatGPT_Image_Apr_30_2026_03_55_23_PM.webp";
+import adsImg15 from "@assets/ChatGPT_Image_Apr_30_2026_03_55_30_PM.webp";
+import adsImg16 from "@assets/ChatGPT_Image_Apr_30_2026_03_55_39_PM.webp";
+import adsImg17 from "@assets/ChatGPT_Image_Apr_30_2026_03_55_49_PM.webp";
+import adsImg18 from "@assets/ChatGPT_Image_Apr_30_2026_03_56_02_PM.webp";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -207,6 +207,7 @@ function AdCard({ ad, seed = 0 }: { ad: AdData; seed?: number }) {
         <img
           src={ad.imageUrl}
           alt={ad.headline}
+          decoding="async"
           style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
           draggable={false}
         />
@@ -512,6 +513,7 @@ function AdShowcaseHero() {
                     src={SHOWCASE_AD_POOL[card.imageIdx]}
                     alt=""
                     draggable={false}
+                    decoding="async"
                     style={{
                       width: '100%',
                       height: '100%',
@@ -835,6 +837,38 @@ function HeroAurora({ onOpenDemo, t }: { onOpenDemo: () => void; t: any }) {
                 </span>
               ))}
              </div>
+
+            {/* Official Partner Logos */}
+            <div className="flex items-center gap-4 sm:gap-5 justify-center lg:justify-start mt-5 pt-5 border-t border-gray-200/60">
+              <span className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.14em] text-gray-400 whitespace-nowrap">
+                {t('respondHome.heroPartnersLabel')}
+              </span>
+              <div className="flex items-center gap-3 sm:gap-5">
+                {/* Meta */}
+                <svg className="h-[18px] sm:h-[20px] w-auto" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Meta">
+                  <path d="M20 2c-8.837 0-16 5.82-16 16 0 7.945 5.492 14.55 12.844 15.742v-11.07h-3.828V18h3.828v-3.516c0-3.867 2.41-5.977 5.859-5.977 1.113 0 2.308.078 3.422.156v3.907h-1.953c-1.563 0-2.07.977-2.07 2.188V18h4.14l-.664 4.672h-3.476V33.82C30.39 32.734 36 26.063 36 18c0-10.18-7.163-16-16-16z" fill="#1877F2"/>
+                  <path d="M24.375 22.672L25.04 18h-4.142v-3.398c0-1.211.508-2.188 2.07-2.188h1.954V8.508c-1.114-.078-2.309-.156-3.422-.156-3.449 0-5.86 2.11-5.86 5.977V18h-3.827v4.672h3.828v11.07a18.052 18.052 0 004.383.078v-11.148h3.351z" fill="white"/>
+                </svg>
+                {/* Google */}
+                <svg className="h-[20px] sm:h-[22px] w-auto" viewBox="0 0 272 92" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Google">
+                  <path d="M115.75 47.18c0-6.77-5.57-12.01-12.46-12.01-6.88 0-12.45 5.24-12.45 12.01 0 6.76 5.57 11.95 12.45 11.95 6.89 0 12.46-5.19 12.46-11.95zm-5.34 0c0 4.17-3.11 7.21-7.12 7.21-4.01 0-7.12-3.04-7.12-7.21 0-4.18 3.11-7.27 7.12-7.27 4.01 0 7.12 3.09 7.12 7.27z" fill="#EA4335"/>
+                  <path d="M135.24 47.18c0-6.77-5.57-12.01-12.46-12.01-6.88 0-12.45 5.24-12.45 12.01 0 6.76 5.57 11.95 12.45 11.95 6.89 0 12.46-5.19 12.46-11.95zm-5.34 0c0 4.17-3.11 7.21-7.12 7.21-4.01 0-7.12-3.04-7.12-7.21 0-4.18 3.12-7.27 7.12-7.27 4.01 0 7.12 3.09 7.12 7.27z" fill="#FBBC05"/>
+                  <path d="M155.75 35.17v23.85h-5V35.17h-6.78v-4.46h18.56v4.46h-6.78z" fill="#4285F4"/>
+                  <path d="M175.83 59.02h-5.01V36.58c0-2.04-1.12-3.17-3.04-3.17-2.02 0-3.23 1.34-3.69 2.56-.17.45-.22.89-.22 1.45v21.6h-4.96V35.17h4.79v2.56h.06c.67-1.56 2.35-3.12 5.07-3.12 3.18 0 5.01 2.01 5.01 5.35v19.06z" fill="#34A853"/>
+                  <path d="M184.83 59.02h-4.96V24h4.96v35.02z" fill="#4285F4"/>
+                  <path d="M194.16 59.02h-4.96V30.71h4.96v4.46h.06c.95-3.12 3.07-5.01 6.31-5.01 4.68 0 7.32 3.23 7.32 8.31v20.55h-4.96V39.37c0-2.96-1.45-4.96-4.29-4.96-2.68 0-4.46 2.12-4.46 5.3v19.31z" fill="#EA4335"/>
+                  <path d="M225.03 35.79c-1.34-.95-3.35-1.62-5.52-1.62-5.13 0-8.48 4.07-8.48 9.27 0 5.13 3.29 9.26 8.37 9.26 2.12 0 4.13-.67 5.52-1.62v-4.91c-1.28 1.34-3.07 2.07-5.18 2.07-2.85 0-4.85-1.9-5.41-4.63h11.6V41c0-5.24-3.4-9.04-8.43-9.04-5.63 0-9.32 4.46-9.32 9.66 0 5.24 3.69 9.71 9.43 9.71 5.13 0 8.32-3.35 8.32-8.15v-1.51h-8.15v3.79h4.46c-.5 1.67-2.18 2.85-4.4 2.85-2.96 0-5.19-2.34-5.19-5.46 0-3.13 2.29-5.47 5.24-5.47 1.45 0 2.63.5 3.46 1.23l3.63-3.52z" fill="#4285F4"/>
+                  <path d="M238.68 59.02V30.71h4.24v3.85h.06c.84-2.68 3.07-4.4 5.8-4.4.39 0 .89.05 1.34.11v4.57c-.5-.11-1.23-.17-1.84-.17-3.18 0-5.3 2.4-5.3 5.86v18.49h-4.3z" fill="#34A853"/>
+                  <path d="M254.38 30.26c-1.39 0-2.51-1.12-2.51-2.51 0-1.4 1.12-2.51 2.51-2.51 1.4 0 2.51 1.11 2.51 2.51 0 1.39-1.11 2.51-2.51 2.51zm-2.01 28.76v-23.85h4.29v23.85h-4.29z" fill="#EA4335"/>
+                </svg>
+                {/* TikTok */}
+                <svg className="h-[18px] sm:h-[20px] w-auto" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="TikTok">
+                  <path d="M34.145 9.733c-1.966-1.171-3.359-2.882-4.04-4.893A9.18 9.18 0 0129.44 0h-5.955v26.107c0 1.648-.47 3.243-1.348 4.355-.799 1.055-1.92 1.68-3.113 1.68-2.348 0-4.25-1.889-4.25-4.214 0-2.401 1.992-4.335 4.382-4.214v-5.81c-5.457-.33-9.898 4.039-9.898 9.482 0 3.507 1.901 6.57 4.71 8.226.648.42 1.353.728 2.1.896a10.416 10.416 0 005.384-.003c2.04-.503 3.82-1.696 4.989-3.422 1.36-2.004 2.04-4.387 2.04-6.829V13.502a15.059 15.059 0 008.434 2.636v-5.86c-.446-.062-.894-.13-1.346-.245-.688-.176-1.354-.452-1.99-.8v.5z" fill="#00F2EA"/>
+                  <path d="M42.595 16.138v-5.86a14.955 14.955 0 01-8.434-2.636l-.001-.5v13.476c0 2.442-.68 4.825-2.04 6.829-1.169 1.726-2.949 2.919-4.989 3.422a10.416 10.416 0 01-5.384.003c-.747-.168-1.452-.476-2.1-.896.418.24.848.464 1.282.67 3.41 1.622 7.273.603 9.948-2.365 1.36-2.004 2.04-4.387 2.04-6.829V8.467a15.059 15.059 0 008.434 2.636v5.86c-.446-.062-.894-.13-1.346-.245-.688-.176-1.356-.452-1.991-.8l1.021.22z" fill="#FF004F"/>
+                  <path d="M32.16 20.149V6.673A12.99 12.99 0 0129.44 0h-5.955v26.107c0 1.648-.47 3.243-1.348 4.355-.799 1.055-1.92 1.68-3.113 1.68-2.348 0-4.25-1.889-4.25-4.214 0-2.401 1.992-4.335 4.382-4.214v-5.81c-5.457-.33-9.898 4.039-9.898 9.482 0 2.74 1.145 5.226 3.012 7.024 1.091 1.06 2.432 1.845 3.898 2.22a10.49 10.49 0 005.476.088c1.023-.278 1.984-.745 2.827-1.392 1.36-2.004 2.04-4.387 2.04-6.829V13.502a15.059 15.059 0 008.434 2.636v-5.86c-1.981-.26-3.729-1.224-5.018-2.613l1.021.484z" fill="#000000" style={{mixBlendMode: 'multiply', opacity: 0.12}}/>
+                </svg>
+              </div>
+            </div>
             </div>
 
            {/* ── RIGHT · 3D Ad Conveyor (scales with viewport) ── */}
