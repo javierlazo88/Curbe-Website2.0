@@ -908,18 +908,18 @@ function HeroAurora({ onOpenDemo, t }: { onOpenDemo: () => void; t: any }) {
                       className="h-12 sm:h-14 w-auto object-contain"
                       loading="lazy"
                     />
-                    {/* Meta Business Partner */}
-                    <img
-                      src={metaPartnerLogo}
-                      alt="Meta Business Partner"
-                      className="h-20 sm:h-24 w-auto object-contain -my-4"
-                      loading="lazy"
-                    />
                     {/* TikTok For Business Partner */}
                     <img
                       src={tiktokPartnerLogo}
                       alt="TikTok For Business Partner"
                       className="h-10 sm:h-12 w-auto object-contain"
+                      loading="lazy"
+                    />
+                    {/* Meta Business Partner */}
+                    <img
+                      src={metaPartnerLogo}
+                      alt="Meta Business Partner"
+                      className="h-20 sm:h-24 w-auto object-contain -my-4"
                       loading="lazy"
                     />
                     {/* LinkedIn Marketing Partner */}
