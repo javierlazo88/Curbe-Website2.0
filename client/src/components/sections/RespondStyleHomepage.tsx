@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import { useTranslation } from 'react-i18next';
-import metaPartnerLogo from "@assets/partners/meta-partner.png";
+import metaPartnerLogo from "@assets/partners/meta-partner.webp";
 import googlePartnerLogo from "@assets/partners/google-partner.png";
 import tiktokPartnerLogo from "@assets/partners/tiktok-partner.png";
 import linkedinPartnerLogo from "@assets/partners/linkedin-partner.png";
