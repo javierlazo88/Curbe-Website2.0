@@ -919,7 +919,7 @@ function HeroAurora({ onOpenDemo, t }: { onOpenDemo: () => void; t: any }) {
                     <img
                       src={metaPartnerLogo}
                       alt="Meta Business Partner"
-                      className="h-20 sm:h-24 w-auto object-contain -my-4"
+                      className="h-24 sm:h-28 w-auto object-contain -my-5"
                       loading="lazy"
                     />
                     {/* LinkedIn Marketing Partner */}
