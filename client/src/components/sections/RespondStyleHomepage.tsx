@@ -900,33 +900,33 @@ function HeroAurora({ onOpenDemo, t }: { onOpenDemo: () => void; t: any }) {
 
                   <div className="hidden md:block w-px h-10 bg-gradient-to-b from-transparent via-gray-300 to-transparent" />
 
-                  <div className="flex flex-wrap items-center justify-center md:justify-around gap-x-10 sm:gap-x-14 gap-y-4 flex-1">
+                  <div className="flex flex-wrap items-center justify-center md:justify-around gap-x-6 sm:gap-x-10 md:gap-x-14 gap-y-3 flex-1 w-full">
                     {/* Google Partner */}
                     <img
                       src={googlePartnerLogo}
                       alt="Google Partner"
-                      className="h-12 sm:h-14 w-auto object-contain"
+                      className="h-9 sm:h-12 md:h-14 w-auto object-contain"
                       loading="lazy"
                     />
                     {/* TikTok For Business Partner */}
                     <img
                       src={tiktokPartnerLogo}
                       alt="TikTok For Business Partner"
-                      className="h-10 sm:h-12 w-auto object-contain"
+                      className="h-7 sm:h-10 md:h-12 w-auto object-contain"
                       loading="lazy"
                     />
                     {/* Meta Business Partner */}
                     <img
                       src={metaPartnerLogo}
                       alt="Meta Business Partner"
-                      className="h-24 sm:h-28 w-auto object-contain -my-5"
+                      className="h-16 sm:h-24 md:h-28 w-auto object-contain -my-3 sm:-my-5"
                       loading="lazy"
                     />
                     {/* LinkedIn Marketing Partner */}
                     <img
                       src={linkedinPartnerLogo}
                       alt="LinkedIn Marketing Partner"
-                      className="h-14 sm:h-16 w-auto object-contain rounded-md"
+                      className="h-10 sm:h-14 md:h-16 w-auto object-contain rounded-md"
                       loading="lazy"
                     />
                   </div>
