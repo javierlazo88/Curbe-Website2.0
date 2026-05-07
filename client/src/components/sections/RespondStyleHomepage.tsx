@@ -887,18 +887,18 @@ function HeroAurora({ onOpenDemo, t }: { onOpenDemo: () => void; t: any }) {
                   <div className="hidden md:block w-px h-10 bg-gradient-to-b from-transparent via-gray-300 to-transparent" />
 
                   <div className="flex flex-wrap items-center justify-center md:justify-around gap-x-10 sm:gap-x-14 gap-y-4 flex-1">
-                    {/* Meta Business Partner */}
-                    <img
-                      src={metaPartnerLogo}
-                      alt="Meta Business Partner"
-                      className="h-16 sm:h-20 w-auto object-contain -my-3"
-                      loading="lazy"
-                    />
                     {/* Google Partner */}
                     <img
                       src={googlePartnerLogo}
                       alt="Google Partner"
                       className="h-12 sm:h-14 w-auto object-contain"
+                      loading="lazy"
+                    />
+                    {/* Meta Business Partner */}
+                    <img
+                      src={metaPartnerLogo}
+                      alt="Meta Business Partner"
+                      className="h-16 sm:h-20 w-auto object-contain -my-3"
                       loading="lazy"
                     />
                     {/* TikTok For Business Partner */}
