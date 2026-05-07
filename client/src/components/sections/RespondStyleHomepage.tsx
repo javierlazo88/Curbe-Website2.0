@@ -868,12 +868,26 @@ function HeroAurora({ onOpenDemo, t }: { onOpenDemo: () => void; t: any }) {
                 />
                 <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
                   <div className="flex items-center gap-3 md:flex-shrink-0">
-                    <div
-                      className="flex items-center justify-center w-9 h-9 rounded-full"
-                      style={{ background: 'linear-gradient(135deg, #2563eb 0%, #7c3aed 100%)' }}
+                    <svg
+                      viewBox="0 0 24 24"
+                      className="w-10 h-10 flex-shrink-0 drop-shadow-[0_2px_8px_rgba(37,99,235,0.35)]"
+                      aria-label="Verified"
                     >
-                      <CheckCircle2 className="w-5 h-5 text-white" />
-                    </div>
+                      <defs>
+                        <linearGradient id="verifiedBadgeGradient" x1="0" y1="0" x2="1" y2="1">
+                          <stop offset="0%" stopColor="#2563eb" />
+                          <stop offset="100%" stopColor="#7c3aed" />
+                        </linearGradient>
+                      </defs>
+                      <path
+                        fill="url(#verifiedBadgeGradient)"
+                        d="M12 1.5l2.39 1.79 2.97-.36 1.13 2.77 2.77 1.13-.36 2.97L22.5 12l-1.6 2.2.36 2.97-2.77 1.13-1.13 2.77-2.97-.36L12 22.5l-2.39-1.79-2.97.36-1.13-2.77-2.77-1.13.36-2.97L1.5 12l1.6-2.2-.36-2.97 2.77-1.13 1.13-2.77 2.97.36L12 1.5z"
+                      />
+                      <path
+                        fill="#fff"
+                        d="M10.6 15.6l-3-3 1.4-1.4 1.6 1.6 4.4-4.4 1.4 1.4z"
+                      />
+                    </svg>
                     <div className="flex flex-col leading-tight">
                       <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.18em] text-blue-700">
                         {t('respondHome.heroPartnersLabel')}
