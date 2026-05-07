@@ -891,7 +891,7 @@ function HeroAurora({ onOpenDemo, t }: { onOpenDemo: () => void; t: any }) {
                     <img
                       src={metaPartnerLogo}
                       alt="Meta Business Partner"
-                      className="h-9 sm:h-11 w-auto object-contain"
+                      className="h-14 sm:h-16 w-auto object-contain"
                       loading="lazy"
                     />
                     {/* Google Partner */}
