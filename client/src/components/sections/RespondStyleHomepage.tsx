@@ -898,7 +898,7 @@ function HeroAurora({ onOpenDemo, t }: { onOpenDemo: () => void; t: any }) {
                     <img
                       src={metaPartnerLogo}
                       alt="Meta Business Partner"
-                      className="h-16 sm:h-20 w-auto object-contain -my-3"
+                      className="h-20 sm:h-24 w-auto object-contain -my-4"
                       loading="lazy"
                     />
                     {/* TikTok For Business Partner */}
